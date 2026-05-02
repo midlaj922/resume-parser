@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Analysis - SkillWise Recruit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Resume Analysis Results</h1>
+        {% if error_message %}
+            <p class="error-message">{{ error_message }}</p>
+        {% endif %}
+        <input type="text" id="searchInput" placeholder="Search by Name or Skill...">
+        <table id="resultsTable">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Name</th>
+                    <th onclick="sortTable(1)">Skills</th>
+                    <th onclick="sortTable(2)">Recommended Jobs</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in table_data %}
+                <tr>
+                    <td>{{ row.name }}</td>
+                    <td>{{ row.skills }}</td>
+                    <td>{{ row.jobs }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="skills-categorization">
+            {% for row in table_data %}
+            <h3>{{ row.name }}'s Skill Categories</h3>
+            <ul>
+                {% for category, skills in row.categorized_skills.items() %}
+                <li><strong>{{ category }}:</strong> {{ ', '.join(skills) }}</li>
+                {% endfor %}
+            </ul>
+            {% endfor %}
+        </div>
+        <div class="career-path">
+            {% for row in table_data %}
+            <h3>{{ row.name }}'s Career Path</h3>
+            <p>Based on your skills, a suggested career progression could be:</p>
+            <ul>
+                <li>Junior {{ row.jobs.split(',')[0] }} (Entry-Level)</li>
+                <li>Mid-Level {{ row.jobs.split(',')[0].replace('Junior', '').strip() }} (2-5 Years)</li>
+                <li>Senior {{ row.jobs.split(',')[0].replace('Junior', '').strip() }} (5+ Years)</li>
+            </ul>
+            {% endfor %}
+        </div>
+        <button class="btn" onclick="downloadPDF()">Download as PDF</button>
+        <button class="btn home-btn" onclick="window.location.href='/'">Home</button>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

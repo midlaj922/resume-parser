@@ -1,0 +1,125 @@
+
+body {
+    background: #f5f7fa;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 50px ;
+    margin-left: 450px ;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px ;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-grid {
+    display: grid;
+    gap: 20px;
+}
+
+.form-group {
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    background: #f9f9f9;
+    transition: 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #4CAF50;
+    background: #fff;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 5px;
+    transition: 0.3s;
+}
+
+input:focus + label,
+input:not(:placeholder-shown) + label,
+select:focus + label,
+select:not([value=""]) + label {
+    color: #4CAF50;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.btn-primary {
+    background: #2d3a4b;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #45a049;
+}
+
+.btn-secondary {
+    background: #ccc;
+    color: black;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: #bbb;
+}
+
+/* Responsive for mobile */
+@media (max-width: 600px) {
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+
+

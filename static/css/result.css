@@ -1,0 +1,73 @@
+/* Search Input Styling */
+.search-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #E5E7EB; /* Light gray border */
+  border-radius: 8px; /* Soft rounded corners */
+  background-color: #F9FAFB; /* Light background */
+  color: #4B5563; /* Darker text */
+  font-size: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.search-input::placeholder {
+  color: #9CA3AF; /* Light gray placeholder text */
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #3B82F6; /* Focused border color (Blue) */
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.4); /* Soft blue shadow */
+}
+
+/* Table Styling */
+.results-table {
+  min-width: 100%;
+  table-layout: fixed; /* Ensures consistent column widths */
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.results-table th,
+.results-table td {
+  padding: 12px 20px;
+  text-align: left;
+  color: #4B5563; /* Darker text */
+}
+
+.results-table th {
+  background-color: #2563EB; /* Blue background for header */
+  color: white; /* White text for header */
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.results-table th:hover {
+  background-color: #1D4ED8; /* Darker blue on hover */
+}
+
+.results-table tbody {
+  background-color: #FFFFFF; /* White background for rows */
+}
+
+.results-table .table-row {
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.results-table .table-row:hover {
+  background-color: #F3F4F6; /* Light gray hover background */
+  transform: translateY(-2px); /* Slightly raise row on hover */
+}
+
+.results-table .table-cell {
+  border-bottom: 1px solid #E5E7EB; /* Light gray border between rows */
+}
+
+/* Optional: Add a border radius on the bottom of the table */
+.results-table tbody tr:last-child td {
+  border-bottom: none; /* Remove bottom border for the last row */
+}

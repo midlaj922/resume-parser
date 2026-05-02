@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillWise Recruit-adminlogin</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+        font-family: 'Plus Jakarta Sans', 'Noto Sans', sans-serif;
+      }
+      .container-main {
+        max-width: 1200px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+      .image-section {
+        background: url('/static/photo/people.png') no-repeat center;
+        background-size: cover;
+        min-height: 600px;
+      }
+      .login-section {
+        padding: 3rem;
+      }
+      .form-control {
+        transition: all 0.3s ease;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+      }
+      .form-control:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+      }
+      .password-container {
+        position: relative;
+      }
+      .toggle-password {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #6b7280;
+      }
+      .btn-primary {
+        background: linear-gradient(to right, #3b82f6, #60a5fa);
+        border: none;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+      }
+      .flash-message {
+        animation: slideIn 0.5s ease forwards;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+      }
+      .success {
+        background: #dcfce7;
+        color: #15803d;
+      }
+      .error {
+        background: #fee2e2;
+        color: #b91c1c;
+      }
+      @keyframes slideIn {
+        from { transform: translateY(-20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+      .navbar-brand svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+      <div class="container-fluid px-5 py-3">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M13.8261 30.5736C16.7203 29.8826 20.2244 29.4783 24 29.4783C27.7756 29.4783 31.2797 29.8826 34.1739 30.5736C36.9144 31.2278 39.9967 32.7669 41.3563 33.8352L24.8486 7.36089C24.4571 6.73303 23.5429 6.73303 23.1514 7.36089L6.64374 33.8352C8.00331 32.7669 11.0856 31.2278 13.8261 30.5736Z"
+              fill="currentColor"
+            ></path>
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M39.998 35.764C39.9944 35.7463 39.9875 35.7155 39.9748 35.6706C39.9436 35.5601 39.8949 35.4259 39.8346 35.2825C39.8168 35.2403 39.7989 35.1993 39.7813 35.1602C38.5103 34.2887 35.9788 33.0607 33.7095 32.5189C30.9875 31.8691 27.6413 31.4783 24 31.4783C20.3587 31.4783 17.0125 31.8691 14.2905 32.5189C12.0012 33.0654 9.44505 34.3104 8.18538 35.1832C8.17384 35.2075 8.16216 35.233 8.15052 35.2592C8.09919 35.3751 8.05721 35.4886 8.02977 35.589C8.00356 35.6848 8.00039 35.7333 8.00004 35.7388C8.00004 35.739 8 35.7393 8.00004 35.7388C8.00004 35.7641 8.0104 36.0767 8.68485 36.6314C9.34546 37.1746 10.4222 37.7531 11.9291 38.2772C14.9242 39.319 19.1919 40 24 40C28.8081 40 33.0758 39.319 36.0709 38.2772C37.5778 37.7531 38.6545 37.1746 39.3151 36.6314C39.9006 36.1499 39.9857 35.8511 39.998 35.764ZM4.95178 32.7688L21.4543 6.30267C22.6288 4.4191 25.3712 4.41909 26.5457 6.30267L43.0534 32.777C43.0709 32.8052 43.0878 32.8338 43.104 32.8629L41.3563 33.8352C43.104 32.8629 43.1038 32.8626 43.104 32.8629L43.1051 32.865L43.1065 32.8675L43.1101 32.8739L43.1199 32.8918C43.1276 32.906 43.1377 32.9246 43.1497 32.9473C43.1738 32.9925 43.2062 33.0545 43.244 33.1299C43.319 33.2792 43.4196 33.489 43.5217 33.7317C43.6901 34.1321 44 34.9311 44 35.7391C44 37.4427 43.003 38.7775 41.8558 39.7209C40.6947 40.6757 39.1354 41.4464 37.385 42.0552C33.8654 43.2794 29.133 44 24 44C18.867 44 14.1346 43.2794 10.615 42.0552C8.86463 41.4464 7.30529 40.6757 6.14419 39.7209C4.99695 38.7775 3.99999 37.4427 3.99999 35.7391C3.99999 34.8725 4.29264 34.0922 4.49321 33.6393C4.60375 33.3898 4.71348 33.1804 4.79687 33.0311C4.83898 32.9556 4.87547 32.8935 4.9035 32.8471C4.91754 32.8238 4.92954 32.8043 4.93916 32.7889L4.94662 32.777L4.95178 32.7688ZM35.9868 29.004L24 9.77997L12.0131 29.004C12.4661 28.8609 12.9179 28.7342 13.3617 28.6282C16.4281 27.8961 20.0901 27.4783 24 27.4783C27.9099 27.4783 31.5719 27.8961 34.6383 28.6282C35.082 28.7342 35.5339 28.8609 35.9868 29.004Z"
+              fill="currentColor"
+            ></path>
+          </svg>
+          <h2 class="ms-2 mb-0 text-black fs-5 fw-bold">SkillWise Recruit</h2>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav align-items-center">
+            <li class="nav-item">
+              <a class="nav-link text-black" href="#">About</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link text-black" href="#">News</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-black" href="#">Team</a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link text-black" href="#">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a href="/signup" class="btn btn-dark px-4">Sign up</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-main mx-auto my-5">
+      <div class="row g-0">
+        <div class="col-md-6 image-section"></div>
+        <div class="col-md-6 login-section d-flex flex-column justify-content-center">
+          <h2 class="text-3xl font-bold text-gray-800 mb-2">Admin Login</h2>
+          <p class="text-gray-600 mb-4">Sign in to access the admin panel</p>
+
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              <div id="flash-messages" class="mb-4">
+                {% for category, message in messages %}
+                  <div class="flash-message {{ category }}">{{ message }}</div>
+                {% endfor %}
+              </div>
+            {% endif %}
+          {% endwith %}
+
+          <form method="POST" action="/admin-login">
+            <div class="mb-4">
+              <label class="form-label text-gray-700" for="email">Email</label>
+              <input
+                name="email"
+                type="email"
+                placeholder="Enter your admin email"
+                required
+                class="form-control"
+              />
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label text-gray-700" for="password">Password</label>
+              <div class="password-container">
+                <input
+                  name="password"
+                  type="password"
+                  placeholder="Enter your password"
+                  required
+                  class="form-control"
+                  id="password-input"
+                />
+                <span class="toggle-password" onclick="togglePassword('password-input')">
+                  <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256">
+                    <path
+                      d="M247.31,124.76c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48S61.43,61.26,36.34,86.35C17.51,105.18,9,124,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208s66.57-13.26,91.66-38.34c18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.47,133.47,0,0,1,25,128,133.33,133.33,0,0,1,48.07,97.25C70.33,75.19,97.22,64,128,64s57.67,11.19,79.93,33.25A133.46,133.46,0,0,1,231.05,128C223.84,141.46,192.43,192,128,192Zm0-112a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z"
+                    ></path>
+                  </svg>
+                  <svg class="eye-off-icon hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256">
+                    <path
+                      d="M53.92,34.62A8,8,0,1,0,42.06,45.38L61.32,66.55C25,88.84,9.38,123.2,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208a127.11,127.11,0,0,0,52.07-10.83l22,24.21a8,8,0,1,0,11.84-10.76Zm47.33,75.84,41.67,45.81a32,32,0,0,1-41.67-45.81ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.16,133.16,0,0,1,25,128c4.69-8.79,19.66-33.39,47.35-49.38l20,22A48,48,0,0,0,174,175.75l-14.66,16.11C146.11,186.52,137,192,128,192Zm119.31-67.24c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48c-19.2,0-37.76,5.17-53.95,15.12a8,8,0,0,0,8.3,13.71C97,68.13,113.15,64,128,64c30.78,0,57.67,11.19,79.93,33.25A133.46,133.46,0,0,1,231.05,128C223.84,141.46,192.43,192,128,192a122.76,122.76,0,0,1-16.46-1.13,8,8,0,0,0-3.66,15.61C113.53,206.8,120.67,208,128,208c34.88,0,66.57-13.26,91.66-38.34,18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76Z"
+                    ></path>
+                  </svg>
+                </span>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <a href="#" class="text-primary text-sm hover:underline">Forgot password?</a>
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-primary w-100 py-3 fw-bold text-white"
+            >
+              Login as Admin
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+      function togglePassword(inputId) {
+        const passwordInput = document.getElementById(inputId);
+        const toggleSpan = passwordInput.nextElementSibling;
+        const eyeIcon = toggleSpan.querySelector('.eye-icon');
+        const eyeOffIcon = toggleSpan.querySelector('.eye-off-icon');
+        
+        if (passwordInput.type === 'password') {
+          passwordInput.type = 'text';
+          eyeIcon.classList.add('hidden');
+          eyeOffIcon.classList.remove('hidden');
+        } else {
+          passwordInput.type = 'password';
+          eyeIcon.classList.remove('hidden');
+          eyeOffIcon.classList.add('hidden');
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const flashMessages = document.getElementById('flash-messages');
+        if (flashMessages) {
+          setTimeout(() => {
+            flashMessages.style.transition = 'opacity 0.5s ease';
+            flashMessages.style.opacity = '0';
+            setTimeout(() => flashMessages.remove(), 500);
+          }, 3000);
+        }
+      });
+    </script>
+  </body>
+</html>

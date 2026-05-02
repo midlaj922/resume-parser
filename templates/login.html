@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillWise Recruit-login</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+        font-family: 'Plus Jakarta Sans', 'Noto Sans', sans-serif;
+      }
+      .flash-message {
+        animation: slideIn 0.5s ease forwards;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+      }
+      .container-main {
+        max-width: 1200px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+      .image-section {
+        background: url('/static/photo/people.png') no-repeat center;
+        background-size: cover;
+        min-height: 600px;
+      }
+      .login-section {
+        padding: 3rem;
+      }
+      .form-control {
+        transition: all 0.3s ease;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+      }
+      .form-control:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+      }
+      .password-container {
+        position: relative;
+      }
+      .toggle-password {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #6b7280;
+      }
+      .btn-primary {
+        background: linear-gradient(to right, #3b82f6, #60a5fa);
+        border: none;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+      }
+      .flash-message {
+        animation: slideIn 0.5s ease forwards;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+      }
+      .success {
+        background: #dcfce7;
+        color: #15803d;
+      }
+      .error {
+        background: #fee2e2;
+        color: #b91c1c;
+      }
+      @keyframes slideIn {
+        from { transform: translateY(-20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+      .navbar-brand svg {
+        width: 24px;
+        height: 24px;
+        
+      }
+
+      .hidden {
+        display: none;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+      <div class="container-fluid px-5 py-3">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M13.8261 30.5736C16.7203 29.8826 20.2244 29.4783 24 29.4783C27.7756 29.4783 31.2797 29.8826 34.1739 30.5736C36.9144 31.2278 39.9967 32.7669 41.3563 33.8352L24.8486 7.36089C24.4571 6.73303 23.5429 6.73303 23.1514 7.36089L6.64374 33.8352C8.00331 32.7669 11.0856 31.2278 13.8261 30.5736Z"
+              fill="currentColor"
+            ></path>
+          </svg>
+          <h2 class="ms-2 mb-0 text-black fs-5 fw-bold">SkillWise Recruit</h2>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav align-items-center">
+            <li class="nav-item">
+             <a class="nav-link text-black" href="#">recruiter</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-black" href="#">About</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link text-black" href="#">News</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-black" href="#">Team</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-black" href="#">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a href="{{url_for('signup')}}" class="btn btn-dark px-4">Sign up</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-main mx-auto my-5">
+      <div class="row g-0">
+        <div class="col-md-6 image-section"></div>
+        <div class="col-md-6 login-section d-flex flex-column justify-content-center">
+          <h2 class="text-3xl font-bold text-gray-800 mb-2">Welcome Back</h2>
+          <p class="text-gray-600 mb-4">Sign in to continue your journey</p>
+
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              <div id="flash-messages" class="mb-4">
+                {% for category, message in messages %}
+                  <div class="flash-message {{ category }}">{{ message }}</div>
+                {% endfor %}
+              </div>
+            {% endif %}
+          {% endwith %}
+
+          <form method="POST" action="/login">
+            <div class="mb-4">
+              <label class="form-label text-gray-700" for="email">Email</label>
+              <input
+                name="email"
+                type="email"
+                placeholder="Enter your email"
+                required
+                class="form-control"
+              />
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label text-gray-700" for="password">Password</label>
+              <div class="password-container">
+                <input
+                  name="password"
+                  type="password"
+                  placeholder="Enter your password"
+                  required
+                  class="form-control"
+                  id="password-input"
+                />
+                <span class="toggle-password" onclick="togglePassword()">
+                  <!-- Eye Open Icon -->
+                  <svg id="eye-icon" class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M247.31,124.76c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48S61.43,61.26,36.34,86.35C17.51,105.18,9,124,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208s66.57-13.26,91.66-38.34c18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.47,133.47,0,0,1,25,128,133.33,133.33,0,0,1,48.07,97.25C70.33,75.19,97.22,64,128,64s57.67,11.19,79.93,33.25A133.46,133.46,0,0,1,231.05,128C223.84,141.46,192.43,192,128,192Zm0-112a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z"></path>
+                  </svg>
+                
+                  <!-- Eye Off Icon -->
+                  <svg id="eye-off-icon" class="eye-icon hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M53.92,34.62A8,8,0,1,0,42.06,45.38L61.32,66.55C25,88.84,9.38,123.2,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208a127.11,127.11,0,0,0,52.07-10.83l22,24.21a8,8,0,1,0,11.84-10.76Zm47.33,75.84,41.67,45.81a32,32,0,0,1-41.67-45.81ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.16,133.16,0,0,1,25,128c4.69-8.79,19.66-33.39,47.35-49.38l20,22A48,48,0,0,0,174,175.75l-14.66,16.11C146.11,186.52,137,192,128,192Zm119.31-67.24c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48c-19.2,0-37.76,5.17-53.95,15.12a8,8,0,0,0,8.3,13.71C97,68.13,113.15,64,128,64c30.78,0,57.67,11.19,79.93,33.25A133.46,133.46,0,0,1,231.05,128C223.84,141.46,192.43,192,128,192a122.76,122.76,0,0,1-16.46-1.13,8,8,0,0,0-3.66,15.61C113.53,206.8,120.67,208,128,208c34.88,0,66.57-13.26,91.66-38.34,18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76Z"></path>
+                  </svg>
+                </span>
+                
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <a href="#" class="text-primary text-sm hover:underline">Forgot password?</a>
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-primary w-100 py-3 fw-bold text-white"
+            >
+              Log In
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+      function togglePassword() {
+        const passwordInput = document.querySelector('input[name="password"]');
+        const eyeIcon = document.getElementById('eye-icon');
+        const eyeOffIcon = document.getElementById('eye-off-icon');
+      
+        if (passwordInput.type === 'password') {
+          passwordInput.type = 'text';
+          eyeIcon.classList.add('hidden');
+          eyeOffIcon.classList.remove('hidden');
+        } else {
+          passwordInput.type = 'password';
+          eyeIcon.classList.remove('hidden');
+          eyeOffIcon.classList.add('hidden');
+        }
+      }
+      document.addEventListener('DOMContentLoaded', () => {
+        const flashMessages = document.getElementById('flash-messages');
+        if (flashMessages) {
+          setTimeout(() => {
+            flashMessages.style.transition = 'opacity 0.5s ease';
+            flashMessages.style.opacity = '0';
+            setTimeout(() => flashMessages.remove(), 500);
+          }, 3000);
+        }
+      });
+    </script>
+  </body>
+</html>

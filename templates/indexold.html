@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillWise Recruit - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">SkillWise Recruit</h1>
+        <p class="subtitle">Empowering Recruitment with Smart Resume Analysis</p>
+
+        <div class="project-overview">
+            <h2>About This Project</h2>
+            <p>SkillWise Recruit is an innovative tool designed to streamline the hiring process by analyzing resumes and matching candidates to suitable job roles. Leveraging advanced text extraction and skill-based algorithms, it identifies key skills and recommends career paths based on market trends.</p>
+            <ul class="features-list">
+                <li><i class="fas fa-check-circle"></i> Upload multiple PDFs and analyze them instantly.</li>
+                <li><i class="fas fa-chart-line"></i> Get personalized job recommendations based on skills.</li>
+                <li><i class="fas fa-download"></i> Download results as a professional PDF report.</li>
+                <li><i class="fas fa-shield-alt"></i> Handles up to 15 resumes with robust error management.</li>
+            </ul>
+        </div>
+
+        <div class="upload-section">
+            <div class="upload-box">
+                <label for="resumes" class="upload-label">Drag & Drop or Click to Upload your resumes (PDF only, max 15)</label>
+                <input type="file" id="resumes" name="resumes" multiple accept=".pdf" form="uploadForm">
+            </div>
+            <button class="btn analyze-btn" onclick="analyzeResumes()">Analyze</button>
+            <div class="loader" id="loader" style="display: none;">
+                <div class="spinner"></div>
+                <p>Processing...</p>
+            </div>
+        </div>
+
+        <form id="uploadForm" method="POST" enctype="multipart/form-data"></form>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
