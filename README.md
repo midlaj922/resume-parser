@@ -30,6 +30,31 @@ A full-stack recruitment automation system that parses resumes, extracts skills,
 - Security: werkzeug (password hashing)
 - Frontend: HTML/CSS/JavaScript with Bootstrap
 
+### System Design
+
+The system follows a two-layer architecture with internal data flow and external user interactions:
+
+**Data Flow:**
+```
+FrontEnd → Backend → Resume Analysis → Job Matching → MySQL
+                    ↓                    ↓
+              Skill Data          Job Matches
+```
+
+**External Interaction:**
+```
+User → Upload Resumes → MySQL → Admin → Retrieve Resumes → Analysis
+```
+
+**Description:**
+- **FrontEnd**: User interface for resume upload and result display
+- **Backend**: Flask API that processes requests and coordinates data flow
+- **Resume Analysis**: PDF parsing and skill extraction module
+- **Job Matching**: Intelligent job recommendation engine based on extracted skills
+- **MySQL**: Central database storing user data, resumes, and analysis results
+- **User**: Uploads resumes and views analysis results
+- **Admin**: Manages users and processes resumes for analysis
+
 ---
 
 ## 📂 Project Structure
